@@ -35,7 +35,6 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(wsademo.ws.EntidadResource.class);
-        resources.add(wsademo.ws.ReporteResource.class);
     }
 
 }
