@@ -1,0 +1,16 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <th style="text-align: center">Id</th>
+    <th style="text-align: center">Razón Social</th>
+    <th style="text-align: center">Abreviatura</th>
+    <th style="text-align: center">Eliminado</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entidad of entidades">
+      <td>{{entidad.id}}</td>
+      <td>{{entidad.razonSocial}}</td>
+      <td>{{entidad.abreviatura}}</td>
+      <td>{{entidad.eliminada ? 'Sí' : 'No'}}</td>
+    </tr>
+  </tbody>
+</table>
