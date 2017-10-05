@@ -18,5 +18,7 @@ public interface EntidadBeanRemote {
 
     List<Entidad> find();
     
+    
+    
     Entidad find(Integer id);
 }
