@@ -7,20 +7,24 @@ import { FormsModule } from '@angular/forms';
 //Components
 import { AppComponent } from './component/main/app.component';
 import { EntidadComponent } from './component/entidad/entidad.component';
+import { ReporteComponent } from './component/reporte/Reporte.component';
 
 //Services
 import { EntidadService } from './service/entidad.service';
+import { ReporteService } from './service/reporte.service';
 
 
 const routes: Routes = [
   { path: '', component: EntidadComponent },
-  { path: 'entidad', component: EntidadComponent }
+  { path: 'entidad', component: EntidadComponent },
+  { path: 'reporte', component: ReporteComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    EntidadComponent
+    EntidadComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [EntidadService],
+  providers: [EntidadService, ReporteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
-        <weblogic.lib.home>\\${server}\lib</weblogic.lib.home>       
+        <weblogic.lib.home>\\C:\Oracle\Middleware\user_projects\domains\UnicoDomain\lib</weblogic.lib.home>       
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
