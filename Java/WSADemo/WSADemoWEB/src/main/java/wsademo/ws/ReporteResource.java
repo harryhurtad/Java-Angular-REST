@@ -14,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import wsademo.remote.ReporteBeanRemote;
@@ -43,15 +44,16 @@ public class ReporteResource {
     /**
      * Retrieves representation of an instance of wsademo.ws.ReporteResource
      *
+     * @param inicio
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJson() {
+    public Response getJson(@QueryParam("inicio") int inicio) {
         //TODO return proper representation object
         Object result;
         try {
-            result = ((ReporteBeanRemote) InitialContextUtil.lookup(JNDI_REMOTE_BEAN)).find();
+            result = ((ReporteBeanRemote) InitialContextUtil.lookup(JNDI_REMOTE_BEAN)).getReporte(inicio);
         } catch (Exception ex) {
             result = new WSAMessage("error", ex.getMessage());
             Logger.getLogger(EntidadResource.class.getName()).log(Level.SEVERE, null, ex);

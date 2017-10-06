@@ -15,5 +15,5 @@ import wsademo.util.Reporte;
 @Remote
 public interface ReporteBeanRemote {
     
-    Reporte find() throws Exception;    
+    Reporte getReporte(int inicio) throws Exception;    
 }

@@ -14,15 +14,27 @@ import java.util.List;
  */
 public class Reporte implements Serializable{
 
+    private int anterior;
     private List<String> columnas;
     private List datos;
+    private int siguiente;
 
     public Reporte() {
     }
 
-    public Reporte(List<String> nombresColumnas, List informacion) {
-        this.columnas = nombresColumnas;
-        this.datos = informacion;
+    public Reporte(int anterior, List<String> columnas, List datos, int siguiente) {
+        this.anterior = anterior;
+        this.columnas = columnas;
+        this.datos = datos;
+        this.siguiente = siguiente;
+    }
+
+    public int getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(int anterior) {
+        this.anterior = anterior;
     }
 
     public List<String> getColumnas() {
@@ -39,5 +51,13 @@ public class Reporte implements Serializable{
 
     public void setDatos(List datos) {
         this.datos = datos;
+    }
+
+    public int getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(int siguiente) {
+        this.siguiente = siguiente;
     }
 }

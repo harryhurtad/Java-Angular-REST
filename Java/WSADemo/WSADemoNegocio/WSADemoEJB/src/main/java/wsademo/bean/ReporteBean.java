@@ -28,9 +28,12 @@ public class ReporteBean implements ReporteBeanRemote {
     private EntityManager em;
 
     @Override
-    public Reporte find() throws Exception {
+    public Reporte getReporte(int inicio) throws Exception {
+        final int maximo = 1000;
         Reporte reporte = new Reporte();
-        Query query = em.createNativeQuery("select top 500 * from unico_tlf, unico_adquiriente");
+        Query query = em.createNativeQuery("select * from unico_tlf, unico_adquiriente");
+        query.setFirstResult(inicio);
+        query.setMaxResults(maximo);
         reporte.setDatos(query.getResultList());
         Connection connection = em.unwrap(java.sql.Connection.class);
         Statement statement = connection.createStatement();
@@ -39,6 +42,14 @@ public class ReporteBean implements ReporteBeanRemote {
         reporte.setColumnas(new ArrayList<String>());
         for (int i = 1; i < metaData.getColumnCount(); i++) {
             reporte.getColumnas().add(metaData.getColumnName(i));
+        }
+        reporte.setAnterior(inicio - maximo);
+        if (inicio < 0) {
+            reporte.setAnterior(0);
+        }
+        reporte.setSiguiente(inicio + maximo);
+        if (!reporte.getDatos().isEmpty() && reporte.getDatos().size() == maximo) {
+            reporte.setSiguiente(inicio + maximo + 1);
         }
         return reporte;
     }
