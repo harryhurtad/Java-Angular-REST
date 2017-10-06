@@ -1,1 +1,14 @@
-{{reporte | json}}
+<table class="table table-bordered table-striped">
+    <thead>
+        <th style="text-align: center" *ngFor="let columna of reporte.columnas">
+            {{columna}}
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let registro of reporte.datos">
+            <td *ngFor="let dato of registro">
+                {{dato}}
+            </td>
+        </tr>
+    </tbody>
+</table>
