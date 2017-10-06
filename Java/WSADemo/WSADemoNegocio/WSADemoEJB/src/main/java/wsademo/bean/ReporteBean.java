@@ -29,28 +29,26 @@ public class ReporteBean implements ReporteBeanRemote {
 
     @Override
     public Reporte getReporte(int inicio) throws Exception {
-        final int maximo = 1000;
+        if (inicio < 0) {
+            inicio = 0;
+        }
+        final int maximo = 3;
         Reporte reporte = new Reporte();
-        Query query = em.createNativeQuery("select * from unico_tlf, unico_adquiriente");
+        Query query = em.createNativeQuery("select * from unico_trm_redeban");
         query.setFirstResult(inicio);
         query.setMaxResults(maximo);
         reporte.setDatos(query.getResultList());
         Connection connection = em.unwrap(java.sql.Connection.class);
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select top 1 * from unico_tlf, unico_adquiriente");
+        ResultSet resultSet = statement.executeQuery("select top 1 * from unico_trm_redeban");
         ResultSetMetaData metaData = resultSet.getMetaData();
         reporte.setColumnas(new ArrayList<String>());
-        for (int i = 1; i < metaData.getColumnCount(); i++) {
+        for (int i = 1; i <= metaData.getColumnCount(); i++) {
             reporte.getColumnas().add(metaData.getColumnName(i));
         }
         reporte.setAnterior(inicio - maximo);
-        if (inicio < 0) {
-            reporte.setAnterior(0);
-        }
-        reporte.setSiguiente(inicio + maximo);
-        if (!reporte.getDatos().isEmpty() && reporte.getDatos().size() == maximo) {
-            reporte.setSiguiente(inicio + maximo + 1);
-        }
+        reporte.setSiguiente(inicio + reporte.getDatos().size());
+        reporte.setFin(maximo > reporte.getDatos().size());
         return reporte;
     }
     // Add business logic below. (Right-click in editor and choose

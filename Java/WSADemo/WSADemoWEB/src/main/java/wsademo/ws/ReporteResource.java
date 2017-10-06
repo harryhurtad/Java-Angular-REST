@@ -49,7 +49,7 @@ public class ReporteResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJson(@QueryParam("inicio") int inicio) {
+    public Response getReporte(@QueryParam("inicio") int inicio) {
         //TODO return proper representation object
         Object result;
         try {

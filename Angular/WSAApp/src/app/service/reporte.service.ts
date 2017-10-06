@@ -10,8 +10,8 @@ export class ReporteService {
 
   constructor(private http: Http) { }
 
-  getInfo(): Observable<any[]> {
-    return this.http.get(this.getUrl('reporte')).map(this.getData).catch(this.error);
+  getInfo(inicio: number): Observable<any> {
+    return this.http.get(this.getUrl('reporte?inicio=' + inicio)).map(this.getData).catch(this.error);
   }
 
   getData(data: Response) {
